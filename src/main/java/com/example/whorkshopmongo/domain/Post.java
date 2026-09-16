@@ -1,8 +1,9 @@
 package com.example.whorkshopmongo.domain;
 
+import com.example.whorkshopmongo.dto.AuthorDTO;
+import com.example.whorkshopmongo.dto.UserDTO;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -16,17 +17,17 @@ public class Post implements Serializable {
     private Date date;
     private String title;
     private String body;
-    private User author;
+    private AuthorDTO userDTO;
 
     public Post() {
     }
 
-    public Post(String id, Date date, String title, String body, User author) {
+    public Post(String id, Date date, String title, String body, AuthorDTO userDTO) {
         this.id = id;
         this.date = date;
         this.title = title;
         this.body = body;
-        this.author = author;
+        this.userDTO = userDTO;
     }
 
     public String getId() {
@@ -61,12 +62,12 @@ public class Post implements Serializable {
         this.body = body;
     }
 
-    public User getAuthor() {
-        return author;
+    public AuthorDTO getUserDTO() {
+        return userDTO;
     }
 
-    public void setAuthor(User author) {
-        this.author = author;
+    public void setUserDTO(AuthorDTO userDTO) {
+        this.userDTO = userDTO;
     }
 
     @Override
