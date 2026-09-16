@@ -1,7 +1,6 @@
 package com.example.whorkshopmongo.domain;
 
 import com.example.whorkshopmongo.dto.AuthorDTO;
-import com.example.whorkshopmongo.dto.UserDTO;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
