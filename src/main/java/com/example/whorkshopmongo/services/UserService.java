@@ -1,6 +1,7 @@
 package com.example.whorkshopmongo.services;
 
 import com.example.whorkshopmongo.domain.User;
+import com.example.whorkshopmongo.dto.UserDTO;
 import com.example.whorkshopmongo.repositories.UserRepository;
 import com.example.whorkshopmongo.services.exception.ObjectNotFoundException;
 import org.springframework.stereotype.Service;
@@ -26,4 +27,11 @@ public class UserService {
         return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
     }
 
+    public User insert(User obj) {
+        return userRepository.insert(obj);
+    }
+
+    public User fromDTO(UserDTO dto) {
+        return new User(dto.getId(), dto.getName(), dto.getEmail());
+    }
 }

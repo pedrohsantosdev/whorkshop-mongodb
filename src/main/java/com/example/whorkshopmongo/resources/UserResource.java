@@ -4,11 +4,10 @@ import com.example.whorkshopmongo.domain.User;
 import com.example.whorkshopmongo.dto.UserDTO;
 import com.example.whorkshopmongo.services.UserService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -34,4 +33,21 @@ public class UserResource {
         UserDTO objDTO = new UserDTO(obj);
         return ResponseEntity.ok().body(objDTO);
     }
+
+    @PostMapping
+    public ResponseEntity<UserDTO> insert(@RequestBody UserDTO dto) {
+        User obj = userService.fromDTO(dto);
+        userService.insert(obj);
+        UserDTO objDTO = new UserDTO(obj);
+
+        URI uri = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(obj.getId())
+                .toUri();
+
+        return ResponseEntity.created(uri).body(objDTO);
+    }
+
+
 }
