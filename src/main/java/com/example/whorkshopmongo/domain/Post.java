@@ -1,11 +1,15 @@
 package com.example.whorkshopmongo.domain;
 
 import com.example.whorkshopmongo.dto.AuthorDTO;
+import com.example.whorkshopmongo.dto.CommentDTO;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 @Document
@@ -17,6 +21,8 @@ public class Post implements Serializable {
     private String title;
     private String body;
     private AuthorDTO userDTO;
+
+    private List<CommentDTO> comments = new ArrayList<>();
 
     public Post() {
     }
@@ -67,6 +73,10 @@ public class Post implements Serializable {
 
     public void setUserDTO(AuthorDTO userDTO) {
         this.userDTO = userDTO;
+    }
+
+    public List<CommentDTO> getComments() {
+        return comments;
     }
 
     @Override
