@@ -96,4 +96,4 @@ Envie `POST /users` com `Content-Type: application/json`:
 
 ## Autor
 
-[pedrohsantosdev](https://github.com/ped
+https://github.com/pedrohsantosdev
